@@ -1,56 +1,26 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test/presentation/screens/home_screen.dart';
-import 'package:test/presentation/screens/second_screen.dart';
-import 'package:test/presentation/screens/thid_screen.dart';
-
-import 'logic/cubit/counter_cubit.dart';
+import 'package:test/logic/cubit/counter_cubit.dart';
+import 'package:test/presentation/router/app_router.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  final CounterCubit _counterCubitInstance = CounterCubit();
+class MyApp extends StatelessWidget {
+  final AppRouter appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: {
-        '/': (context) => BlocProvider.value(
-              value: _counterCubitInstance,
-              child: const FirstScreen(),
-            ),
-        '/second': (context) => BlocProvider.value(
-              value: _counterCubitInstance,
-              child: const SecondScreen(
-                color: Colors.pink,
-              ),
-            ),
-        '/third': (context) => BlocProvider.value(
-              value: _counterCubitInstance,
-              child: ThirdScreen(color: Colors.green),
-            ),
-      },
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return BlocProvider<CounterCubit>(
+      create: (context) => CounterCubit(),
+      child: MaterialApp(
+        onGenerateRoute: appRouter.onGeneratedRoute,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _counterCubitInstance.close();
-    super.dispose();
   }
 }

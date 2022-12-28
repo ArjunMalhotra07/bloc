@@ -71,7 +71,7 @@ class _FirstScreenState extends State<FirstScreen> {
                     child: const Icon(Icons.screen_lock_landscape),
                   ),
                   FloatingActionButton(
-                    heroTag: '*',
+                    heroTag: '&',
                     onPressed: () {
                       Navigator.of(context).pushNamed('/third');
                     },
