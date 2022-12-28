@@ -70,27 +70,45 @@ class _MyHomePageState extends State<MyHomePage> {
           // the App.build method, and use it to set our appbar title.
           title: Text(widget.title),
         ),
-        body: Center(
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-            FloatingActionButton(
-              onPressed: () {
-                BlocProvider.of<CounterCubit>(context).increment();
-              },
-              child: const Icon(Icons.add),
-            ),
-            BlocBuilder<CounterCubit, CounterState>(
-              builder: (context, state) {
-                return Text("${state.counter}");
-              },
-            ),
-            FloatingActionButton(
-              onPressed: () {
-                BlocProvider.of<CounterCubit>(context).decrement();
-              },
-              child: const Icon(Icons.remove),
-            )
-          ]),
+        body: BlocListener<CounterCubit, CounterState>(
+          listener: ((context, state) {
+            if (state.didIncrement == true) {
+              const snackBar = SnackBar(
+                content: Text("Incremented"),
+                duration: Duration(seconds: 1),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            } else if (state.didIncrement == false) {
+              const snackBar = SnackBar(
+                content: Text("Decremented"),
+                duration: Duration(seconds: 1),
+              );
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            }
+          }),
+          child: Center(
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  FloatingActionButton(
+                    onPressed: () {
+                      BlocProvider.of<CounterCubit>(context).increment();
+                    },
+                    child: const Icon(Icons.add),
+                  ),
+                  BlocBuilder<CounterCubit, CounterState>(
+                    builder: (context, state) {
+                      return Text("${state.counter}");
+                    },
+                  ),
+                  FloatingActionButton(
+                    onPressed: () {
+                      BlocProvider.of<CounterCubit>(context).decrement();
+                    },
+                    child: const Icon(Icons.remove),
+                  )
+                ]),
+          ),
         )
 
         // This trailing comma makes auto-formatting nicer for build methods.
