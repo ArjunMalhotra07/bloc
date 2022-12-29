@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test/constants/enum.dart';
 import 'package:test/logic/cubit/counter_cubit.dart';
+import 'package:test/logic/cubit/internet_cubit.dart';
 import 'package:test/presentation/screens/second_screen.dart';
 
 class FirstScreen extends StatefulWidget {
@@ -24,6 +26,20 @@ class _FirstScreenState extends State<FirstScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
+              BlocBuilder<InternetCubit, InternetState>(
+                  builder: (context, state) {
+                if (state is InternetConnected &&
+                    state.connectionType == ConnectionType.Wifi) {
+                  return const Text('WIFI');
+                } else if (state is InternetConnected &&
+                    state.connectionType == ConnectionType.Mobile) {
+                  return const Text('MOBILE');
+                } else if (state is InternetDisconnected) {
+                  return const Text('No Internet');
+                } else {
+                  return const CircularProgressIndicator();
+                }
+              }),
               Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
                 FloatingActionButton(
                   heroTag: '+',

@@ -11,6 +11,10 @@ class InternetCubit extends Cubit<InternetState> {
   final Connectivity connectivity;
   late StreamSubscription connectivityStreamSubscription;
   InternetCubit({required this.connectivity}) : super(InternetLoading()) {
+    monitorInternetConnection();
+  }
+
+  StreamSubscription<ConnectivityResult>? monitorInternetConnection() {
     connectivityStreamSubscription =
         connectivity.onConnectivityChanged.listen((event) {
       if (event == ConnectivityResult.mobile) {
