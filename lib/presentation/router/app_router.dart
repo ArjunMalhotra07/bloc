@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test/logic/cubit/status_cubit.dart';
+import 'package:test/presentation/screens/fifth_screen.dart';
 import 'package:test/presentation/screens/fourth_screen.dart';
 import 'package:test/presentation/screens/home_screen.dart';
 import 'package:test/presentation/screens/second_screen.dart';
@@ -25,8 +26,13 @@ class AppRouter {
                 )));
       case '/fourth':
         return MaterialPageRoute(
-            builder: ((_) => FourthScreen(
+            builder: ((_) => const FourthScreen(
                   color: Colors.purple,
+                )));
+      case '/fifth':
+        return MaterialPageRoute(
+            builder: ((_) => const FifthScreen(
+                  color: Colors.red,
                 )));
 
       default:

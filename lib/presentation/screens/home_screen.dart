@@ -116,6 +116,13 @@ class _FirstScreenState extends State<FirstScreen> {
                       },
                       child: const Icon(Icons.screen_lock_landscape_sharp),
                     ),
+                    FloatingActionButton(
+                      heroTag: '/',
+                      onPressed: () {
+                        Navigator.of(context).pushNamed('/fifth');
+                      },
+                      child: const Icon(Icons.screen_lock_landscape_sharp),
+                    ),
                   ],
                 )
               ],
