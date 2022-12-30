@@ -96,7 +96,7 @@ class _FirstScreenState extends State<FirstScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     MaterialButton(
-                        color: Colors.yellow,
+                        color: Colors.pink,
                         minWidth: 10,
                         child: const Text(
                           '2',
@@ -106,7 +106,7 @@ class _FirstScreenState extends State<FirstScreen> {
                           Navigator.pushNamed(context, '/second');
                         }),
                     MaterialButton(
-                        color: Colors.yellow,
+                        color: Colors.green,
                         minWidth: 10,
                         child: const Text(
                           '3',

@@ -18,6 +18,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
           title: const Text("Screen 3"),
+          backgroundColor: widget.color,
           centerTitle: true,
         ),
         body: Center(

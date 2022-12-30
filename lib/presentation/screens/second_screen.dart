@@ -21,6 +21,7 @@ class _SecondScreenState extends State<SecondScreen> {
           // the App.build method, and use it to set our appbar title.
           title: const Text("Screen 2"),
           centerTitle: true,
+          backgroundColor: widget.color,
         ),
         body: Center(
           child:

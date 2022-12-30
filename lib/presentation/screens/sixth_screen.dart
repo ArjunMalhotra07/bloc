@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:test/logic/bloc/ticker_bloc.dart';
 
 class SixthScreen extends StatefulWidget {
   const SixthScreen({super.key, required this.color});
@@ -14,7 +16,10 @@ class _SixthScreenState extends State<SixthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(backgroundColor: widget.color),
+        appBar: AppBar(
+            title: const Text('Screen 6'),
+            centerTitle: true,
+            backgroundColor: widget.color),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -22,32 +27,36 @@ class _SixthScreenState extends State<SixthScreen> {
               Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
                 FloatingActionButton(
                   heroTag: '+',
-                  onPressed: () {},
+                  onPressed: () {
+                    BlocProvider.of<TickerBloc>(context)
+                        .add(const AddEvent(2, true, false));
+                  },
                   child: const Icon(Icons.add),
                 ),
-                // BlocConsumer<CounterCubit, CounterState>(
-                //   listener: ((context, state) {
-                //     if (state.didIncrement == true) {
-                //       const snackBar = SnackBar(
-                //         content: Text("Incremented"),
-                //         duration: Duration(seconds: 1),
-                //       );
-                //       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                //     } else if (state.didIncrement == false) {
-                //       const snackBar = SnackBar(
-                //         content: Text("Decremented"),
-                //         duration: Duration(seconds: 1),
-                //       );
-                //       ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                //     }
-                //   }),
-                //   builder: (context, state) {
-                //     return Text("${state.counter}");
-                //   },
-                // ),
+                BlocConsumer<TickerBloc, TickerState>(
+                    builder: ((context, state) {
+                  if (state is TickerInitial) {
+                    return const Text("0");
+                  }
+                  if (state is TickerAddState) {
+                    return Text("${state.num}");
+                  } else if (state is TickerSubtractState) {
+                    return Text("${state.num}");
+                  }
+                  return const Text("");
+                }), listener: ((context, state) {
+                  if (state is TickerAddState) {
+                    print("Added");
+                  } else if (state is TickerSubtractState) {
+                    print("Subtracted");
+                  }
+                })),
                 FloatingActionButton(
                   heroTag: '-',
-                  onPressed: () {},
+                  onPressed: () {
+                    BlocProvider.of<TickerBloc>(context)
+                        .add(const SubtractEvent(2, false, true));
+                  },
                   child: const Icon(Icons.remove),
                 ),
               ]),

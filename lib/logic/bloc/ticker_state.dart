@@ -12,8 +12,22 @@ class TickerInitial extends TickerState {
   List<Object> get props => [];
 }
 
-class TickerAdd extends TickerState {
+class TickerAddState extends TickerState {
   final int num;
+  final bool didAdd;
+  final bool didSubtract;
+  const TickerAddState(
+      {required this.num, required this.didAdd, required this.didSubtract});
+  @override
+  List<Object> get props => [num];
+}
 
-  const TickerAdd({required this.num});
+class TickerSubtractState extends TickerState {
+  final int num;
+  final bool didSubtract;
+  final bool didAdd;
+  const TickerSubtractState(
+      {required this.num, required this.didSubtract, required this.didAdd});
+  @override
+  List<Object> get props => [num];
 }
