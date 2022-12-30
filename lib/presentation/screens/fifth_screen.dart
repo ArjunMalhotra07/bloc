@@ -46,6 +46,17 @@ class _FifthScreenState extends State<FifthScreen> {
   String? value;
   DropdownMenuItem<String> buildMenuItem(String item) =>
       DropdownMenuItem(value: item, child: Text(item));
+
+  final CalendarController _calenderController = CalendarController();
+  void selectionChanged(CalendarSelectionDetails details) {
+    if (_calenderController.view == CalendarView.month ||
+        _calenderController.view == CalendarView.timelineMonth) {
+      print("Day -> ${details.date?.day}");
+    } else {
+      print(details.date?.day);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,6 +72,7 @@ class _FifthScreenState extends State<FifthScreen> {
           Container(
             height: MediaQuery.of(context).size.height / 2,
             child: SfCalendar(
+              onSelectionChanged: selectionChanged,
               view: CalendarView.month,
               monthViewSettings: const MonthViewSettings(
                 appointmentDisplayMode: MonthAppointmentDisplayMode.none,
@@ -71,7 +83,7 @@ class _FifthScreenState extends State<FifthScreen> {
               maxDate: DateTime.now().add(Duration(days: 14)),
               // onTap: calendarTapped,
               selectionDecoration: BoxDecoration(
-                border: Border.all(color: Theme.of(context).primaryColor),
+                border: Border.all(color: Colors.purple),
                 borderRadius: BorderRadius.circular(10),
               ),
               headerStyle: CalendarHeaderStyle(

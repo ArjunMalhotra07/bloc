@@ -95,34 +95,56 @@ class _FirstScreenState extends State<FirstScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    FloatingActionButton(
-                      heroTag: '*',
-                      onPressed: () {
-                        Navigator.of(context).pushNamed('/second');
-                      },
-                      child: const Icon(Icons.screen_lock_landscape),
-                    ),
-                    FloatingActionButton(
-                      heroTag: '&',
-                      onPressed: () {
-                        Navigator.of(context).pushNamed('/third');
-                      },
-                      child: const Icon(Icons.screen_lock_landscape),
-                    ),
-                    FloatingActionButton(
-                      heroTag: '=',
-                      onPressed: () {
-                        Navigator.of(context).pushNamed('/fourth');
-                      },
-                      child: const Icon(Icons.screen_lock_landscape_sharp),
-                    ),
-                    FloatingActionButton(
-                      heroTag: '/',
-                      onPressed: () {
-                        Navigator.of(context).pushNamed('/fifth');
-                      },
-                      child: const Icon(Icons.screen_lock_landscape_sharp),
-                    ),
+                    MaterialButton(
+                        color: Colors.yellow,
+                        minWidth: 10,
+                        child: const Text(
+                          '2',
+                          textAlign: TextAlign.center,
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/second');
+                        }),
+                    MaterialButton(
+                        color: Colors.yellow,
+                        minWidth: 10,
+                        child: const Text(
+                          '3',
+                          textAlign: TextAlign.center,
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/third');
+                        }),
+                    MaterialButton(
+                        minWidth: 10,
+                        color: Colors.purple,
+                        child: const Text(
+                          '4',
+                          textAlign: TextAlign.center,
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/fourth');
+                        }),
+                    MaterialButton(
+                        color: Colors.red,
+                        minWidth: 10,
+                        child: const Text(
+                          '5',
+                          textAlign: TextAlign.center,
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/fifth');
+                        }),
+                    MaterialButton(
+                        minWidth: 10,
+                        color: Colors.yellow,
+                        child: const Text(
+                          '6',
+                          textAlign: TextAlign.center,
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/sixth');
+                        })
                   ],
                 )
               ],

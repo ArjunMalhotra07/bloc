@@ -5,6 +5,7 @@ import 'package:test/presentation/screens/fifth_screen.dart';
 import 'package:test/presentation/screens/fourth_screen.dart';
 import 'package:test/presentation/screens/home_screen.dart';
 import 'package:test/presentation/screens/second_screen.dart';
+import 'package:test/presentation/screens/sixth_screen.dart';
 import 'package:test/presentation/screens/thid_screen.dart';
 
 class AppRouter {
@@ -33,6 +34,11 @@ class AppRouter {
         return MaterialPageRoute(
             builder: ((_) => const FifthScreen(
                   color: Colors.red,
+                )));
+      case '/sixth':
+        return MaterialPageRoute(
+            builder: ((_) => const SixthScreen(
+                  color: Colors.yellow,
                 )));
 
       default:

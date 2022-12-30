@@ -8,3 +8,5 @@ abstract class CalenderState extends Equatable {
 }
 
 class CalenderInitial extends CalenderState {}
+
+class CalenderClicked extends CalenderState {}
