@@ -92,60 +92,73 @@ class _FirstScreenState extends State<FirstScreen> {
                         child: const Icon(Icons.remove),
                       ),
                     ]),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    MaterialButton(
-                        color: Colors.pink,
-                        minWidth: 10,
-                        child: const Text(
-                          '2',
-                          textAlign: TextAlign.center,
-                        ),
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/second');
-                        }),
-                    MaterialButton(
-                        color: Colors.green,
-                        minWidth: 10,
-                        child: const Text(
-                          '3',
-                          textAlign: TextAlign.center,
-                        ),
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/third');
-                        }),
-                    MaterialButton(
-                        minWidth: 10,
-                        color: Colors.purple,
-                        child: const Text(
-                          '4',
-                          textAlign: TextAlign.center,
-                        ),
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/fourth');
-                        }),
-                    MaterialButton(
-                        color: Colors.red,
-                        minWidth: 10,
-                        child: const Text(
-                          '5',
-                          textAlign: TextAlign.center,
-                        ),
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/fifth');
-                        }),
-                    MaterialButton(
-                        minWidth: 10,
-                        color: Colors.yellow,
-                        child: const Text(
-                          '6',
-                          textAlign: TextAlign.center,
-                        ),
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/sixth');
-                        })
-                  ],
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      MaterialButton(
+                          color: Colors.pink,
+                          minWidth: 10,
+                          child: const Text(
+                            '2',
+                            textAlign: TextAlign.center,
+                          ),
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/second');
+                          }),
+                      MaterialButton(
+                          color: Colors.green,
+                          minWidth: 10,
+                          child: const Text(
+                            '3',
+                            textAlign: TextAlign.center,
+                          ),
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/third');
+                          }),
+                      MaterialButton(
+                          minWidth: 10,
+                          color: Colors.purple,
+                          child: const Text(
+                            '4',
+                            textAlign: TextAlign.center,
+                          ),
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/fourth');
+                          }),
+                      MaterialButton(
+                          color: Colors.red,
+                          minWidth: 10,
+                          child: const Text(
+                            '5',
+                            textAlign: TextAlign.center,
+                          ),
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/fifth');
+                          }),
+                      MaterialButton(
+                          minWidth: 10,
+                          color: Colors.yellow,
+                          child: const Text(
+                            '6',
+                            textAlign: TextAlign.center,
+                          ),
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/sixth');
+                          }),
+                      MaterialButton(
+                          minWidth: 10,
+                          color: Colors.yellow,
+                          child: const Text(
+                            '7',
+                            textAlign: TextAlign.center,
+                          ),
+                          onPressed: () {
+                            Navigator.pushNamed(context, '/seventh');
+                          })
+                    ],
+                  ),
                 )
               ],
             ),
