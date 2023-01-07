@@ -1,8 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test/logic/bloc/ticker_bloc.dart';
+import 'package:http/http.dart' show get;
+import 'package:test/logic/models/image_model.dart';
 
 class SixthScreen extends StatefulWidget {
   const SixthScreen({super.key, required this.color});
@@ -13,55 +13,62 @@ class SixthScreen extends StatefulWidget {
 }
 
 class _SixthScreenState extends State<SixthScreen> {
+  var counter = 0;
+  List<ImageModel> images = [];
+  void fetchImage() async {
+    counter += 1;
+    final rawJson = await get(
+        Uri.parse('https://jsonplaceholder.typicode.com/photos/$counter'));
+    final parsedJson = json.decode(rawJson.body);
+    final imageModelObject = ImageModel.fromJson(parsedJson);
+    debugPrint(imageModelObject.id.toString());
+    debugPrint(imageModelObject.title);
+    setState(() {
+      images.add(imageModelObject);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: const Text('Screen 6'),
+            automaticallyImplyLeading: false,
+            title: const Text(
+              'Screen 6',
+              style: TextStyle(color: Colors.black),
+            ),
             centerTitle: true,
             backgroundColor: widget.color),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-                FloatingActionButton(
-                  heroTag: '+',
-                  onPressed: () {
-                    BlocProvider.of<TickerBloc>(context)
-                        .add(const AddEvent(2, true, false));
-                  },
-                  child: const Icon(Icons.add),
-                ),
-                BlocConsumer<TickerBloc, TickerState>(
-                    builder: ((context, state) {
-                  if (state is TickerInitial) {
-                    return const Text("0");
-                  }
-                  if (state is TickerAddState) {
-                    return Text("${state.num}");
-                  } else if (state is TickerSubtractState) {
-                    return Text("${state.num}");
-                  }
-                  return const Text("");
-                }), listener: ((context, state) {
-                  if (state is TickerAddState) {
-                    print("Added");
-                  } else if (state is TickerSubtractState) {
-                    print("Subtracted");
-                  }
-                })),
-                FloatingActionButton(
-                  heroTag: '-',
-                  onPressed: () {
-                    BlocProvider.of<TickerBloc>(context)
-                        .add(const SubtractEvent(2, false, true));
-                  },
-                  child: const Icon(Icons.remove),
-                ),
-              ]),
-            ],
-          ),
+          child: ImageList(images: images),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: fetchImage,
         ));
+  }
+}
+
+class ImageList extends StatelessWidget {
+  final List<ImageModel> images;
+  const ImageList({Key? key, required this.images}) : super(key: key);
+  Widget buildImage(ImageModel image) => Container(
+      decoration: BoxDecoration(border: Border.all(color: Colors.pink)),
+      margin: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        children: [
+          Image(image: NetworkImage(image.url)),
+          const SizedBox(
+            height: 20,
+          ),
+          Text(image.title)
+        ],
+      ));
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+        physics: const BouncingScrollPhysics(),
+        itemCount: images.length,
+        itemBuilder: ((context, index) => buildImage(images[index])));
   }
 }
