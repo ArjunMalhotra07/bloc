@@ -15,10 +15,11 @@ class _AnimationScreenState extends State<AnimationScreen>
   @override
   void initState() {
     super.initState();
-    catController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 300));
-    catAnimation = Tween(begin: 500.0, end: 0.0)
-        .animate(CurvedAnimation(parent: catController, curve: Curves.easeIn));
+    catController =
+        AnimationController(vsync: this, duration: const Duration(seconds: 3));
+    catAnimation = Tween(begin: 0.0, end: 500.0).animate(
+        CurvedAnimation(parent: catController, curve: Curves.bounceOut));
+    catController.forward();
   }
 
   Widget buildCatAnimation() {
@@ -26,9 +27,14 @@ class _AnimationScreenState extends State<AnimationScreen>
         animation: catAnimation,
         builder: (context, child) {
           return Container(
-              child: child, margin: EdgeInsets.only(top: catAnimation.value));
+              margin: EdgeInsets.only(top: catAnimation.value), child: child);
         },
-        child: const Cat());
+        child: const Center(
+          child: Text(
+            "Welcome Back",
+            style: TextStyle(fontSize: 20),
+          ),
+        ));
   }
 
   Widget box() {
@@ -40,17 +46,11 @@ class _AnimationScreenState extends State<AnimationScreen>
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(),
-        body: GestureDetector(
-            onTap: () {
-              if (catController.isCompleted) {
-                catController.reverse();
-              } else {
-                catController.forward();
-              }
-            },
-            child: Stack(
-              alignment: Alignment.center,
-              children: [buildCatAnimation(), box()],
-            )));
+        body: Stack(
+          alignment: Alignment.center,
+          children: [
+            buildCatAnimation(),
+          ],
+        ));
   }
 }
