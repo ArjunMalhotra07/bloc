@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test/constants/enum.dart';
 import 'package:test/logic/cubit/counter_cubit.dart';
 import 'package:test/logic/cubit/internet_cubit.dart';
+import 'package:test/presentation/screens/animation.dart';
 import 'package:test/presentation/screens/second_screen.dart';
 
 class FirstScreen extends StatefulWidget {
@@ -156,9 +157,24 @@ class _FirstScreenState extends State<FirstScreen> {
                           ),
                           onPressed: () {
                             Navigator.pushNamed(context, '/seventh');
-                          })
+                          }),
                     ],
                   ),
+                ),
+                Row(
+                  children: [
+                    MaterialButton(
+                        color: Colors.pink,
+                        minWidth: 10,
+                        child: const Text(
+                          'Animation',
+                          textAlign: TextAlign.center,
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: ((_) => const AnimationScreen())));
+                        })
+                  ],
                 )
               ],
             ),
