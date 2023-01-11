@@ -32,7 +32,7 @@ class _SeventhScreenState extends State<SeventhScreen> with ValidatorMixin {
       onSaved: ((newValue) {
         email = newValue.toString();
       }),
-      validator: validateEmail,
+      // validator: validateEmail,
       decoration: const InputDecoration(
           labelText: "Email Address", hintText: "arjun03.malhotra@gmail.com"),
     );
@@ -44,7 +44,7 @@ class _SeventhScreenState extends State<SeventhScreen> with ValidatorMixin {
       onSaved: ((newValue) {
         pass = newValue.toString();
       }),
-      validator: validatePasscode,
+      // validator: validatePasscode,
       keyboardType: TextInputType.visiblePassword,
       decoration:
           const InputDecoration(labelText: "Passcode", hintText: "Passcode"),
