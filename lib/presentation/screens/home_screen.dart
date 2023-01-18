@@ -168,25 +168,25 @@ class _FirstScreenState extends State<FirstScreen> {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: ((_) => const AnimationScreen())));
                             }),
-                        MaterialButton(
-                            color: Colors.pink,
-                            minWidth: 10,
-                            child: const Text(
-                              'API-BLOC',
-                              textAlign: TextAlign.center,
-                            ),
-                            onPressed: () {
-                              Navigator.of(context)
-                                  .pushNamed('/api_bloc_screen');
-                            })
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: MaterialButton(
+                              color: Colors.pink,
+                              minWidth: 10,
+                              child: const Text(
+                                'API-BLOC',
+                                textAlign: TextAlign.center,
+                              ),
+                              onPressed: () {
+                                Navigator.of(context)
+                                    .pushNamed('/api_bloc_screen');
+                              }),
+                        )
                       ],
                     )),
               ],
             ),
-          )
-
-          // This trailing comma makes auto-formatting nicer for build methods.
-          ),
+          )),
     );
   }
 }
