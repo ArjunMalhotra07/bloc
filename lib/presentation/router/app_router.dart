@@ -45,7 +45,7 @@ class AppRouter {
       case '/seventh':
         return MaterialPageRoute(builder: ((_) => const SeventhScreen()));
       case '/api_bloc_screen':
-        return MaterialPageRoute(builder: ((_) => const APIBLOC()));
+        return MaterialPageRoute(builder: ((_) => const APIBLOCScreen()));
 
       default:
         return null;
