@@ -11,14 +11,21 @@ part 'fetch_data_state.dart';
 class FetchDataBloc extends Bloc<FetchDataEvent, FetchDataState> {
   FetchDataBloc() : super(FetchDataInitial()) {
     on<FetchDataEvent>((event, emit) async {
-      emit(const FetchingDataState());
       final rawJson = await http
           .get(Uri.parse('https://jsonplaceholder.typicode.com/albums'));
-      final parsedJson = json.decode(rawJson.body) as List<dynamic>;
-      final incomingDataList =
-          parsedJson.map((json) => ApiModel.fromJson(json)).toList();
 
-      emit(DataLoadedState(data: incomingDataList));
+      if (rawJson.statusCode == 200) {
+        final parsedJson = json.decode(rawJson.body) as List<dynamic>;
+        try {
+          final incomingDataList =
+              parsedJson.map((json) => ApiModel.fromJson(json)).toList();
+          emit(DataLoadedState(data: incomingDataList));
+        } catch (e) {
+          emit(const ErrorOccuredWhileFetchingData());
+        }
+      } else {
+        emit(const ErrorOccuredWhileFetchingData());
+      }
     });
   }
 }

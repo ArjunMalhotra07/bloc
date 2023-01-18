@@ -23,3 +23,9 @@ class DataLoadedState extends FetchDataState {
   @override
   List<Object> get props => [data];
 }
+
+class ErrorOccuredWhileFetchingData extends FetchDataState {
+  const ErrorOccuredWhileFetchingData();
+  @override
+  List<Object> get props => [];
+}

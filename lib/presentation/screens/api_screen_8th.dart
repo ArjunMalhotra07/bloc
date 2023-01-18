@@ -23,15 +23,45 @@ class _APIBLOCScreenState extends State<APIBLOCScreen> {
       appBar: AppBar(),
       body: BlocBuilder<FetchDataBloc, FetchDataState>(
         builder: (context, state) {
-          if (state is FetchingDataState) {
-            return SkeletonLoader();
+          if (state is ErrorOccuredWhileFetchingData) {
+            return const Center(
+              child: Text("Error"),
+            );
           } else if (state is DataLoadedState) {
             return Container(
-              child: const Text("Data has been loaded"),
+              child: ListView.builder(
+                  itemCount: state.data.length,
+                  itemBuilder: ((context, index) {
+                    var item = state.data[index];
+
+                    return ListTileWidget(
+                        id: item.id.toString(),
+                        title: item.title,
+                        userID: item.userId.toString());
+                  })),
             );
           }
-          return const Center(child: Text("hlo"));
+          return SkeletonLoader();
         },
+      ),
+    );
+  }
+}
+
+class ListTileWidget extends StatelessWidget {
+  String? id;
+  String? userID;
+  String? title;
+  ListTileWidget({this.id, this.title, this.userID, super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ListTile(
+        tileColor: Colors.lightBlueAccent,
+        title: Text(title.toString()),
+        subtitle: Text(id.toString()),
       ),
     );
   }
