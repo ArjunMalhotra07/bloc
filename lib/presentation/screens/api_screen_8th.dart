@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test/bloc/fetch_data_bloc.dart';
+import 'package:test/bloc/fetch_data/fetch_data_bloc.dart';
 import 'package:test/presentation/widgets/skeleton_loader.dart';
 
 class APIBLOCScreen extends StatefulWidget {

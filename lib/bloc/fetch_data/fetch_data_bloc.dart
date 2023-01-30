@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:equatable/equatable.dart';
 
 import 'package:http/http.dart' as http;
@@ -29,3 +30,15 @@ class FetchDataBloc extends Bloc<FetchDataEvent, FetchDataState> {
     });
   }
 }
+
+// class NetworkHelper {
+//   static void observeNetwork() {
+//     Connectivity().onConnectivityChanged.listen((ConnectivityResult result) {
+//       if (result == ConnectivityResult.none) {
+//         NetworkBloc().add(NetworkNotify());
+//       } else {
+//         NetworkBloc().add(NetworkNotify(isConnected: true));
+//       }
+//     });
+//   }
+// }

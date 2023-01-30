@@ -1,7 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test/bloc/fetch_data_bloc.dart';
+import 'package:test/bloc/fetch_data/fetch_data_bloc.dart';
 import 'package:test/logic/bloc/ticker_bloc.dart';
 import 'package:test/logic/cubit/counter_cubit.dart';
 import 'package:test/logic/cubit/internet_cubit.dart';

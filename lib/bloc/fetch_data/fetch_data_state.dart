@@ -29,3 +29,9 @@ class ErrorOccuredWhileFetchingData extends FetchDataState {
   @override
   List<Object> get props => [];
 }
+
+class InternetNotConnectedState extends FetchDataState {
+  const InternetNotConnectedState();
+  @override
+  List<Object> get props => [];
+}
